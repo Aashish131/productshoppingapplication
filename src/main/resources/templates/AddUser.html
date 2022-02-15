@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<style>
+.animate {
+font-style: italic;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  animation-name: example;
+  animation-duration: 4s;
+  animation-iteration-count: 2;
+  animation-direction: alternate;  
+}
+
+@keyframes example {
+  0%   { left:0px; top:0px;}
+  25%  { left:200px; top:0px;}
+  50%  { left:200px; top:200px;}
+  75%  { left:0px; top:200px;}
+  100% { left:0px; top:0px;}
+}
+
+
+.menubar
+{
+font-style: italic;
+color: white;
+}
+.adduser
+{
+font-style: italic;
+}
+.adduserForm
+{
+font-style: italic;
+height: 150px;
+  width: 40%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+img {
+	border-radius: 50%;
+}
+
+.navbar-nav {
+	align-items: center;
+}
+
+.navbar-toggler {
+	float: right;
+}
+</style>
+
+ <title>UserList</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	
+</head>
+<body>
+
+<nav class="bg-dark navbar-dark">
+		<a class="navbar-brand" th:href="@{/AdminHome}"> <img
+			th:src="@{/images/ShoppingCart.png}" width="50" height="50">
+		</a><span class="menubar">Product Shopping Web Application</span>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="menubar">Menu</span>
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/userList}">UsersList</a></li>
+
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/productsList}">ProductsList</a></li>
+
+				
+				<li class="nav-item"><a class="nav-link" th:href="@{/AddUser}">Add
+						User</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/AddProduct}">AddProduct</a></li>
+					
+					
+					<li class="nav-item"><a class="nav-link"
+					th:href="@{/logout}">LogOut</a></li>
+				
+			</ul>
+		</div>
+	</nav>
+
+<div >
+Add User:<div class="animate"> <img th:src="@{/images/adduser.png}" width="50" height="50"/></div>
+</div>
+
+<div class="adduserForm">
+<form action="#" th:action="@{/userAdded}" th:object="${user}" method="post" autocomplete="off">
+    <div class="form-group">
+        <label for="inputEmail">Email</label>
+        <input type="email" th:field="*{email}" class="form-control" id="inputEmail" required placeholder="Email">
+    </div>
+    <div class="form-group">
+        <label for="FirstName">FirstName</label>
+        <input type="text"  th:field="*{firstName}" class="form-control" id="FirstName" required placeholder="FirstName">
+    </div>
+    <div class="form-group">
+        <label for="LastName">LastName</label>
+        <input type="text"  th:field="*{lastName}"  class="form-control" id="LastName" required placeholder="LastName">
+    </div>
+   <div class="form-group">
+        <label for="inputPassword">Password</label>
+        <input type="password"  th:field="*{password}" class="form-control" id="inputPassword" required placeholder="Password">
+    </div>
+    
+    <div class="form-group">
+        <label for="inputRole">Role</label>
+        <input type="text"  th:field="*{roles}" class="form-control" id="Role" required placeholder="Role">
+    </div>
+    
+    <button type="submit" onclick="myalert()" class="btn btn-primary">Submit Details</button>
+</form>
+    </div>
+    <div class="footer" style=" position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: black;
+   color: white;
+   text-align: center;">
+  <p> Product Shopping Fullstack Assignment - Copyright &copy; 2021</p>
+</div>
+
+<script>
+        function myalert() {
+            alert("New user added to UserList successfully");
+        }
+    </script>
+</body>
+
+
+</html>
+
+
+
+

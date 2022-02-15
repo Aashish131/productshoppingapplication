@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><style>
+.button {
+  border-radius: 10px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  padding: 10px;
+  width: 130px;
+  transition: all 0.5s;
+  cursor: pointer;
+float:right;}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: 20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.menubar
+{
+font-style: italic;
+color: white;
+}
+img {
+	border-radius: 50%;
+}
+
+.navbar-nav {
+	align-items: center;
+}
+
+.navbar-toggler {
+	float: right;
+}
+</style>
+  <title>Cart</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="bg-dark navbar-dark">
+		<a class="navbar-brand" th:href="@{/CustomerHome}"> <img
+			th:src="@{/images/ShoppingCart.png}" width="50" height="50">
+		</a><span class="menubar">Product Shopping Web Application</span>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="menubar">Menu</span>
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/customer/MyAccount}">MyAccount</a></li>
+
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/customer/productsListforCustomer}">ProductsList</a></li>
+
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/goToCart}">Go to Cart</a></li>
+					
+					<li class="nav-item"><a class="nav-link"
+					th:href="@{/logout}">LogOut</a></li>
+				
+			</ul>
+		</div>
+	</nav>
+
+
+	<div class="container">
+  <h2>Products in the cart:</h2>
+
+<span></span>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+			<!-- 	<th>Product Image</th> -->
+			
+				<th>Product ID</th>
+				<th>Product Name</th>
+				<th>Product Quantity</th>
+				<th>Product Price<br/>(per item)</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			<tr th:each="cart: ${listCart}">
+				<td th:text="${cart.product_id}">id</td>
+				<td th:text="${cart.name}">name</td>
+				<td th:text="${cart.quantity}">quantity</td>
+				<td th:text="${cart.price}">price</td>
+				<td><a  th:href="@{'/cart/addSameProduct/'+${cart.product_id}}" >+</a>&nbsp; <a  th:href="@{'/cart/remove1Product/'+${cart.product_id}}" >-</a>&nbsp;&nbsp;<a  th:href="@{'/cart/deleteProduct/'+${cart.product_id}}" ><img th:src="@{/images/delete.png}" width="20" height="20"/>Cancel</a> &nbsp; </td>
+				
+				
+			</tr>
+
+		</tbody>
+	</table>
+</div>
+
+<a th:href="@{/addOrderDetails}"><button class="button" onclick="alert()" style=" border-radius: 10px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  padding: 10px;
+  width: 130px;
+  transition: all 0.5s;
+  cursor: pointer;
+float:right;"><span>Proceed </span></button></a>
+    <div class="footer" style=" position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: black;
+   color: white;
+   text-align: center;">
+  <p> Product Shopping Fullstack Assignment - Copyright &copy; 2021</p>
+</div>
+
+
+ <script>
+        function alert() {
+            alert("Please,Add few products in the cart.");
+        }
+    </script>
+ 
+</body>
+</html>
+
+
+
+
+

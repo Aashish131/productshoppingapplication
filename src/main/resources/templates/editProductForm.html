@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<style>
+.animate {
+font-style: italic;
+  width: 80px;
+  height: 80px;
+  position: relative;
+  animation-name: example;
+  animation-duration: 4s;
+  animation-iteration-count: 2;
+  animation-direction: alternate;  
+}
+
+@keyframes example {
+  0%   { left:0px; top:0px;}
+  25%  { left:200px; top:0px;}
+  50%  { left:200px; top:200px;}
+  75%  { left:0px; top:200px;}
+  100% { left:0px; top:0px;}
+}
+.textedit{font-style: italic;}
+
+.menubar
+{
+font-style: italic;
+color: white;
+}
+.adduser
+{
+font-style: italic;
+}
+.edituserForm
+{
+font-style: italic;
+height: 50px;
+  width: 40%;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, -180%);
+}
+img {
+	border-radius: 50%;
+}
+
+.navbar-nav {
+	align-items: center;
+}
+
+.navbar-toggler {
+	float: right;
+}
+</style>
+
+ <title>UserList</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	
+</head>
+<body>
+
+<nav class="bg-dark navbar-dark">
+		<a class="navbar-brand" th:href="@{/AdminHome}"> <img
+			th:src="@{/images/ShoppingCart.png}" width="50" height="50">
+		</a><span class="menubar">Product Shopping Web Application</span>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="menubar">Menu</span>
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/userList}">UsersList</a></li>
+
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/productsList}">ProductsList</a></li>
+
+				
+				<li class="nav-item"><a class="nav-link" th:href="@{/AddUser}">Add
+						User</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/AddProduct}">AddProduct</a></li>
+					
+					
+					<li class="nav-item"><a class="nav-link"
+					th:href="@{/logout}">LogOut</a></li>
+				
+			</ul>
+		</div>
+	</nav>
+
+<div class="textedit">
+Edit User:<div class="animate"> <img th:src="@{/images/edituserdetail.png}" width="50" height="50"/></div>
+</div>
+
+<div class="edituserForm">
+<form action="#" th:action="@{/productAdded}" th:object="${product}" method="post" autocomplete="off">
+ <div class="form-group">
+        <label for="ProductID">Product ID</label>
+        <input type="number" th:field="*{code}" class="form-control" id="Product ID" readonly="readonly" required placeholder="Product ID">
+    </div>
+    <div class="form-group">
+        <label for="ProductName">Product Name</label>
+        <input type="text"  th:field="*{name}"  class="form-control" id="Product Name" required placeholder="Product Name">
+    </div>
+   <div class="form-group">
+        <label for="ProductType">Product Type</label>
+        <input type="text" th:field="*{productType}"  class="form-control" id="Product Type" required placeholder="Product Type">
+    </div>
+    
+    <div class="form-group">
+        <label for="ProductDescription">Product Description</label>
+        <input type="text" th:field="*{description}" class="form-control" id="Product Description" required placeholder="Product Description">
+    </div>
+    <div class="form-group">
+        <label for="ProductQuantity">Product Quantity</label>
+        <input type="number" th:field="*{quantity}" class="form-control" id="Product Quantity" required placeholder="Product Quantity">
+    </div>
+    <div class="form-group">
+        <label for="ProductPrice">Product Price(per item)</label>
+        <input type="number" th:field="*{price}" class="form-control" id="Product Price" required placeholder="Product Price">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit Details</button>
+</form>
+    </div>
+    <div class="footer" style=" position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: black;
+   color: white;
+   text-align: center;">
+  <p> Product Shopping Fullstack Assignment - Copyright &copy; 2021</p>
+</div>
+<script>
+        function myalert() {
+            alert("Updated Product!! successfully");
+        }
+    </script>
+</body>
+
+
+</html>
+
+
+
+

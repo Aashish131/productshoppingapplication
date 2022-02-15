@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+<style>
+.button {
+  border-radius: 10px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  padding: 10px;
+  width: 130px;
+  transition: all 0.5s;
+  cursor: pointer;
+float:right;}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: 20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.menubar
+{
+font-style: italic;
+color: white;
+}
+img {
+	border-radius: 50%;
+}
+
+.navbar-nav {
+	align-items: center;
+}
+
+.navbar-toggler {
+	float: right;
+}
+</style>
+  <title>Cart</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<nav class="bg-dark navbar-dark">
+		<a class="navbar-brand" th:href="@{/CustomerHome}"> <img
+			th:src="@{/images/ShoppingCart.png}" width="50" height="50">
+		</a><span class="menubar">Product Shopping Web Application</span>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="menubar">Menu</span>
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/customer/MyAccount}">MyAccount</a></li>
+
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/customer/productsListforCustomer}">ProductsList</a></li>
+
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/goToCart}">Go to Cart</a></li>
+					
+					<li class="nav-item"><a class="nav-link"
+					th:href="@{/logout}">LogOut</a></li>
+				
+			</ul>
+		</div>
+	</nav>
+
+<div class="container">
+
+
+
+<div class="row justify-content-center">
+<div class="col-md-6">
+<div class="card">
+<header class="card-header">
+			<h4 class="card-title mt-2">Complete the details required for Order:</h4>
+</header>
+<article class="card-body">
+<form  action="#" th:action="@{/customer/OrderPlaced}"  method="post" autocomplete="off">
+	<div class="form-row">
+		<div class="col form-group">
+			<label>Name </label>   
+		  	<input type="text" class="form-control" placeholder="" required="required">
+		</div> <!-- form-group end.// -->
+		<div class="col form-group">
+			<label>Contact no.</label>
+		  	<input type="number" class="form-control" placeholder=" " required="required">
+		</div> <!-- form-group end.// -->
+	</div> <!-- form-row end.// -->
+	<div class="form-group">
+		<label>Delivery address</label>
+		<input type="text" class="form-control" placeholder="" required="required">
+		<small class="form-text text-muted">We'll never share your details with anyone else.</small>
+	</div> <!-- form-group end.// -->
+	
+	
+	<div class="form-row">
+		<div class="form-group col-md-6">
+		  <label>City</label>
+		  <input type="text" class="form-control" required="required">
+		</div> <!-- form-group end.// -->
+		<div class="form-group col-md-6">
+		  <label>Country</label>
+		  <select id="inputState" class="form-control">
+		    <option> Choose...</option>
+		    		      <option selected="">India</option>
+		    <option>Japan</option>
+		      <option>Uzbekistan</option>
+		      <option>Russia</option>
+		      <option >United States</option>
+		      <option>Afghanistan</option>
+		  </select>
+		</div> <!-- form-group end.// -->
+	</div> <!-- form-row.// -->
+	
+    <div class="form-group">
+        <a  th:href="@{/customer/OrderPlaced}"><button type="submit" onclick="myalert()" class="btn btn-primary btn-block"> Place Order  </button></a>
+    </div> <!-- form-group// -->      
+    <small class="text-muted">By clicking the 'Place Order', you confirm that you accept our <br> Terms of use and Privacy Policy.</small>                                          
+</form>
+</article> <!-- card-body end .// -->
+</div>
+</div> <!-- card.// -->
+</div> <!-- col.//-->
+
+</div> <!-- row.//-->
+
+
+   <div class="footer" style=" position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: black;
+   color: white;
+   text-align: center;">
+  <p> Product Shopping Fullstack Assignment - Copyright &copy; 2021</p>
+</div>
+
+<!--container end.//-->
+<script>
+        function myalert() {
+            alert("Thanks for placing the order!!");
+        }
+    </script>
+</body>
+	</html>

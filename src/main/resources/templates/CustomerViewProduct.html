@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><style>
+
+.menubar
+{
+font-style: italic;
+color: white;
+}
+img {
+	border-radius: 50%;
+}
+
+.navbar-nav {
+	align-items: center;
+}
+
+.navbar-toggler {
+	float: right;
+}
+</style>
+  <title>ProductList</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="bg-dark navbar-dark">
+		<a class="navbar-brand" th:href="@{/CustomerHome}"> <img
+			th:src="@{/images/ShoppingCart.png}" width="50" height="50">
+		</a><span class="menubar">Product Shopping Web Application</span>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="menubar">Menu</span>
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/customer/MyAccount}">MyAccount</a></li>
+
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/customer/productsListforCustomer}">ProductsList</a></li>
+
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/goToCart}">Go to Cart</a></li>
+					
+					<li class="nav-item"><a class="nav-link"
+					th:href="@{/logout}">LogOut</a></li>
+				
+			</ul>
+		</div>
+	</nav>
+
+
+	<div class="container">
+  <h2>ProductList:</h2>
+
+<span></span>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+			<!-- 	<th>Product Image</th> -->
+				<th>Product ID</th>
+				<th>Product Name</th>
+				<th>Product Type</th>
+				<th>Product Description</th>
+				<th>Product Quantity</th>
+				<th>Product Price<br/>(per item)</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			<tr th:each="product: ${listProducts}">
+		<!-- 		<td th:text="${}">image</td> -->
+				<td th:text="${product.code}">Product ID</td>
+				<td th:text="${product.name}">Product Name</td>
+				<td th:text="${product.productType}">Product Type</td>
+				<td th:text="${product.description}" style="width: 150px;">Product Description</td>
+				<td th:text="${product.quantity}">Product Quantity</td>
+				<td th:text="${product.price}">Product Price</td>				
+				<td><a th:href="@{'/addToCart/'+${product.code}}"><img th:src="@{/images/cart.png}" width="20" height="20"/><button onclick="myalert()">ADD</button></a>&nbsp;&nbsp; &nbsp;</td>
+				
+			</tr>
+
+		</tbody>
+	</table>
+</div>
+  <script>
+        function myalert() {
+            alert("Product added to cart successfully");
+        }
+    </script>
+    <div class="footer" style=" position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: black;
+   color: white;
+   text-align: center;">
+  <p> Product Shopping Fullstack Assignment - Copyright &copy; 2021</p>
+</div>
+</body>
+</html>
+
+
+
+
+
